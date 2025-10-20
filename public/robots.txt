@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://bedwards.github.io/interior-systems/sitemap.xml

@@ -1,0 +1,92 @@
+{
+  "name": "interior-systems",
+  "version": "1.0.0",
+  "description": "Data-driven interior design intelligence for everyone",
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently \"npm run dev:vite\" \"npm run dev:worker\"",
+    "dev:vite": "vite",
+    "dev:worker": "cd workers && npm run dev",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "lint": "eslint src workers/src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "lint:fix": "eslint src workers/src --ext ts,tsx --fix",
+    "format": "prettier --write \"src/**/*.{ts,tsx,json,css}\" \"workers/src/**/*.{ts,json}\"",
+    "format:check": "prettier --check \"src/**/*.{ts,tsx,json,css}\" \"workers/src/**/*.{ts,json}\"",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "check": "npm run lint && npm run format:check && npm run typecheck && npm run test",
+    "deploy": "npm run build && gh-pages -d dist",
+    "deploy:worker": "cd workers && npm run deploy",
+    "supabase:start": "supabase start",
+    "supabase:stop": "supabase stop",
+    "db:migrate": "supabase db push",
+    "db:reset": "supabase db reset",
+    "prepare": "husky install"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.39.7",
+    "chart.js": "^4.4.1",
+    "fabric": "^5.3.0",
+    "idb": "^8.0.0",
+    "react": "^18.2.0",
+    "react-chartjs-2": "^5.2.0",
+    "react-dom": "^18.2.0",
+    "zustand": "^4.5.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.5",
+    "@types/react": "^18.2.48",
+    "@types/react-dom": "^18.2.18",
+    "@typescript-eslint/eslint-plugin": "^6.19.1",
+    "@typescript-eslint/parser": "^6.19.1",
+    "@vitejs/plugin-react": "^4.2.1",
+    "@vitest/coverage-v8": "^1.2.1",
+    "concurrently": "^8.2.2",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.5",
+    "gh-pages": "^6.1.1",
+    "husky": "^8.0.3",
+    "jsdom": "^24.0.0",
+    "lint-staged": "^15.2.0",
+    "prettier": "^3.2.4",
+    "typescript": "^5.3.3",
+    "vite": "^5.0.12",
+    "vite-plugin-pwa": "^0.17.4",
+    "vitest": "^1.2.1",
+    "workbox-window": "^7.0.0"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "npm": ">=10.0.0"
+  },
+  "keywords": [
+    "interior-design",
+    "design-tools",
+    "supabase",
+    "cloudflare-workers",
+    "react",
+    "pwa"
+  ],
+  "author": "bedwards",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bedwards/interior-systems.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bedwards/interior-systems/issues"
+  },
+  "homepage": "https://bedwards.github.io/interior-systems"
+}

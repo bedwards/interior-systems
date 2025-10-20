@@ -1,0 +1,25 @@
+name = "interior-systems-worker"
+main = "src/index.ts"
+compatibility_date = "2024-01-01"
+node_compat = true
+
+[env.production]
+workers_dev = false
+route = "api.interior-systems.workers.dev/*"
+
+[[kv_namespaces]]
+binding = "RATE_LIMITER"
+id = "your_kv_namespace_id"
+
+[triggers]
+crons = ["0 0 * * *"]
+
+[ai]
+binding = "AI"
+
+[vars]
+ENVIRONMENT = "production"
+
+# Secrets (set via wrangler secret put)
+# SUPABASE_URL
+# SUPABASE_SERVICE_ROLE_KEY
